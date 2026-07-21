@@ -51,6 +51,20 @@ final class SeedWorkoutFactoryTests: XCTestCase {
         )
     }
 
+    func testSeedAssignsEachExerciseItsBundledPhotoAsset() throws {
+        try SeedWorkoutFactory.seedIfNeeded(in: context)
+
+        XCTAssertEqual(
+            try fetchExercises().map(\.bundledPhotoName),
+            [
+                "cross-trainer", "wall-angels", "shoulder-dislocates", "bodyweight-squats",
+                "leg-extension", "leg-press", "seated-leg-curl", "calf-press",
+                "assisted-chin-up", "cable-row", "overhead-press", "diverging-lat-pulldown",
+                "cable-tricep-pulldowns", "dumbbell-curls"
+            ]
+        )
+    }
+
     func testSeedDoesNotOverwriteEditedWorkout() throws {
         try SeedWorkoutFactory.seedIfNeeded(in: context)
         let exercise = try XCTUnwrap(context.fetch(FetchDescriptor<Exercise>()).first)

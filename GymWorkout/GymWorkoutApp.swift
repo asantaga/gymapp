@@ -15,8 +15,28 @@ struct GymWorkoutApp: App {
 
     var body: some Scene {
         WindowGroup {
-            Text("Gym Workout")
+            SeededRootView()
         }
         .modelContainer(modelContainer)
+    }
+}
+
+private struct SeededRootView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query private var exercises: [Exercise]
+
+    var body: some View {
+        Text("Gym Workout")
+            .task {
+                guard exercises.isEmpty else {
+                    return
+                }
+
+                do {
+                    try SeedWorkoutFactory.seedIfNeeded(in: modelContext)
+                } catch {
+                    assertionFailure("Unable to seed Workout A: \(error)")
+                }
+            }
     }
 }

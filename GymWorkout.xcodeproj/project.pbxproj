@@ -14,6 +14,8 @@
 		A10000000000000000000015 /* SeedWorkoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000007 /* SeedWorkoutFactory.swift */; };
 		A10000000000000000000016 /* SeedWorkoutFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000008 /* SeedWorkoutFactoryTests.swift */; };
 		A10000000000000000000017 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000009 /* Assets.xcassets */; };
+		A10000000000000000000018 /* WorkoutSessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000023 /* WorkoutSessionStore.swift */; };
+		A10000000000000000000019 /* WorkoutSessionStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000024 /* WorkoutSessionStoreTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		A10000000000000000000007 /* SeedWorkoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedWorkoutFactory.swift; sourceTree = "<group>"; };
 		A10000000000000000000008 /* SeedWorkoutFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedWorkoutFactoryTests.swift; sourceTree = "<group>"; };
 		A10000000000000000000009 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A10000000000000000000023 /* WorkoutSessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionStore.swift; sourceTree = "<group>"; };
+		A10000000000000000000024 /* WorkoutSessionStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionStoreTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,10 +47,11 @@
 			);
 			sourceTree = "<group>";
 		};
-		A10000000000000000000032 /* GymWorkout */ = { isa = PBXGroup; children = ( A10000000000000000000001 /* GymWorkoutApp.swift */, A10000000000000000000009 /* Assets.xcassets */, A10000000000000000000035 /* Models */, A10000000000000000000036 /* Data */, ); path = GymWorkout; sourceTree = "<group>"; };
+		A10000000000000000000032 /* GymWorkout */ = { isa = PBXGroup; children = ( A10000000000000000000001 /* GymWorkoutApp.swift */, A10000000000000000000009 /* Assets.xcassets */, A10000000000000000000035 /* Models */, A10000000000000000000036 /* Data */, A10000000000000000000037 /* ViewModels */, ); path = GymWorkout; sourceTree = "<group>"; };
 		A10000000000000000000035 /* Models */ = { isa = PBXGroup; children = ( A10000000000000000000005 /* Exercise.swift */, A10000000000000000000006 /* WorkoutSession.swift */, ); path = Models; sourceTree = "<group>"; };
 		A10000000000000000000036 /* Data */ = { isa = PBXGroup; children = ( A10000000000000000000007 /* SeedWorkoutFactory.swift */, ); path = Data; sourceTree = "<group>"; };
-		A10000000000000000000033 /* GymWorkoutTests */ = { isa = PBXGroup; children = ( A10000000000000000000002 /* ExerciseModelTests.swift */, A10000000000000000000008 /* SeedWorkoutFactoryTests.swift */, ); path = GymWorkoutTests; sourceTree = "<group>"; };
+		A10000000000000000000037 /* ViewModels */ = { isa = PBXGroup; children = ( A10000000000000000000023 /* WorkoutSessionStore.swift */, ); path = ViewModels; sourceTree = "<group>"; };
+		A10000000000000000000033 /* GymWorkoutTests */ = { isa = PBXGroup; children = ( A10000000000000000000002 /* ExerciseModelTests.swift */, A10000000000000000000008 /* SeedWorkoutFactoryTests.swift */, A10000000000000000000024 /* WorkoutSessionStoreTests.swift */, ); path = GymWorkoutTests; sourceTree = "<group>"; };
 		A10000000000000000000034 /* Products */ = { isa = PBXGroup; children = ( A10000000000000000000003 /* GymWorkout.app */, A10000000000000000000004 /* GymWorkoutTests.xctest */, ); name = Products; sourceTree = "<group>"; };
 /* End PBXGroup section */
 
@@ -98,8 +103,8 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A10000000000000000000061 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = ( A10000000000000000000011 /* GymWorkoutApp.swift in Sources */, A10000000000000000000013 /* Exercise.swift in Sources */, A10000000000000000000014 /* WorkoutSession.swift in Sources */, A10000000000000000000015 /* SeedWorkoutFactory.swift in Sources */, ); runOnlyForDeploymentPostprocessing = 0; };
-		A10000000000000000000063 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = ( A10000000000000000000012 /* ExerciseModelTests.swift in Sources */, A10000000000000000000016 /* SeedWorkoutFactoryTests.swift in Sources */, ); runOnlyForDeploymentPostprocessing = 0; };
+		A10000000000000000000061 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = ( A10000000000000000000011 /* GymWorkoutApp.swift in Sources */, A10000000000000000000013 /* Exercise.swift in Sources */, A10000000000000000000014 /* WorkoutSession.swift in Sources */, A10000000000000000000015 /* SeedWorkoutFactory.swift in Sources */, A10000000000000000000018 /* WorkoutSessionStore.swift in Sources */, ); runOnlyForDeploymentPostprocessing = 0; };
+		A10000000000000000000063 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = ( A10000000000000000000012 /* ExerciseModelTests.swift in Sources */, A10000000000000000000016 /* SeedWorkoutFactoryTests.swift in Sources */, A10000000000000000000019 /* WorkoutSessionStoreTests.swift in Sources */, ); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */

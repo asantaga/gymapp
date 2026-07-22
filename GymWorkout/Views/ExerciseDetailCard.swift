@@ -6,7 +6,7 @@ struct ExerciseDetailCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Spacer(minLength: 12)
+            Spacer(minLength: 28)
 
             exercisePhoto
 
@@ -55,7 +55,7 @@ struct ExerciseDetailCard: View {
                let image = UIImage(named: photoName) {
                 Image(uiImage: image)
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
             } else {
                 ZStack {
                     WorkoutTheme.mint
@@ -65,6 +65,7 @@ struct ExerciseDetailCard: View {
                 }
             }
         }
+        .background(WorkoutTheme.mint)
         .frame(maxWidth: .infinity)
         .frame(height: WorkoutPlayerLayout.exercisePhotoHeight)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))

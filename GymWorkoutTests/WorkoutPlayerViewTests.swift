@@ -6,6 +6,10 @@ final class WorkoutPlayerViewTests: XCTestCase {
     func testPhoneLayoutUsesACompactExercisePhoto() {
         XCTAssertLessThanOrEqual(WorkoutPlayerLayout.exercisePhotoHeight, 190)
     }
+
+    func testPhoneLayoutUsesNormalSpacingBelowExerciseDetails() {
+        XCTAssertLessThanOrEqual(WorkoutPlayerLayout.contentBottomPadding, 32)
+    }
     func testCompleteButtonUsesNonColourCompletionCopy() {
         XCTAssertEqual(WorkoutPlayerCopy.completeButton(isComplete: false), "Mark complete")
         XCTAssertEqual(WorkoutPlayerCopy.completeButton(isComplete: true), "Completed")

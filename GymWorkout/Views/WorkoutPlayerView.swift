@@ -2,6 +2,7 @@ import SwiftUI
 
 enum WorkoutPlayerLayout {
     static let exercisePhotoHeight: CGFloat = 180
+    static var contentBottomPadding: CGFloat { 24 }
 }
 
 struct WorkoutPlayerView: View {
@@ -24,7 +25,7 @@ struct WorkoutPlayerView: View {
                         }
                         .padding(.horizontal, 18)
                         .padding(.top, 18)
-                        .padding(.bottom, 150)
+                        .padding(.bottom, WorkoutPlayerLayout.contentBottomPadding)
                     }
                 }
                 .scrollIndicators(.hidden)

@@ -5,51 +5,57 @@ struct ExerciseDetailCard: View {
     let exercise: Exercise
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Spacer(minLength: 28)
+        GeometryReader { geometry in
+            VStack(alignment: .leading, spacing: 20) {
+                Spacer(minLength: 28)
 
-            exercisePhoto
+                exercisePhoto(
+                    height: WorkoutPlayerLayout.exercisePhotoHeight(
+                        forCardHeight: geometry.size.height
+                    )
+                )
 
-            Spacer(minLength: 16)
+                Spacer(minLength: 16)
 
-            Text(exercise.name)
-                .font(.title.bold())
-                .foregroundStyle(WorkoutTheme.forest)
-                .fixedSize(horizontal: false, vertical: true)
-
-            ViewThatFits(in: .horizontal) {
-                HStack(spacing: 10) {
-                    valueTile(label: "Sets", value: exercise.setsText)
-                    valueTile(label: "Reps", value: exercise.repsText)
-                    valueTile(label: "kg", value: exercise.weightText)
-                }
-
-                VStack(spacing: 10) {
-                    valueTile(label: "Sets", value: exercise.setsText)
-                    valueTile(label: "Reps", value: exercise.repsText)
-                    valueTile(label: "kg", value: exercise.weightText)
-                }
-            }
-
-            VStack(alignment: .leading, spacing: 7) {
-                Text("Notes")
-                    .font(.headline)
+                Text(exercise.name)
+                    .font(.title.bold())
                     .foregroundStyle(WorkoutTheme.forest)
-
-                Text(exercise.notes.isEmpty ? "No additional notes." : exercise.notes)
-                    .font(.body)
-                    .foregroundStyle(WorkoutTheme.secondaryText)
                     .fixedSize(horizontal: false, vertical: true)
+
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: 10) {
+                        valueTile(label: "Sets", value: exercise.setsText)
+                        valueTile(label: "Reps", value: exercise.repsText)
+                        valueTile(label: "kg", value: exercise.weightText)
+                    }
+
+                    VStack(spacing: 10) {
+                        valueTile(label: "Sets", value: exercise.setsText)
+                        valueTile(label: "Reps", value: exercise.repsText)
+                        valueTile(label: "kg", value: exercise.weightText)
+                    }
+                }
+
+                VStack(alignment: .leading, spacing: 7) {
+                    Text("Notes")
+                        .font(.headline)
+                        .foregroundStyle(WorkoutTheme.forest)
+
+                    Text(exercise.notes.isEmpty ? "No additional notes." : exercise.notes)
+                        .font(.body)
+                        .foregroundStyle(WorkoutTheme.secondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(16)
         }
-        .padding(16)
         .background(.white, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
         .shadow(color: .black.opacity(0.07), radius: 14, y: 6)
     }
 
     @ViewBuilder
-    private var exercisePhoto: some View {
+    private func exercisePhoto(height: CGFloat) -> some View {
         Group {
             if let photoName = exercise.bundledPhotoName,
                let image = UIImage(named: photoName) {
@@ -67,7 +73,7 @@ struct ExerciseDetailCard: View {
         }
         .background(WorkoutTheme.mint)
         .frame(maxWidth: .infinity)
-        .frame(height: WorkoutPlayerLayout.exercisePhotoHeight)
+        .frame(height: height)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .accessibilityElement(children: .ignore)

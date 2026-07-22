@@ -4,11 +4,12 @@ import XCTest
 final class WorkoutPlayerViewTests: XCTestCase {
 
     func testPhoneLayoutPrioritizesTheExercisePhoto() {
-        XCTAssertGreaterThanOrEqual(WorkoutPlayerLayout.exercisePhotoHeight, 220)
+        XCTAssertGreaterThanOrEqual(WorkoutPlayerLayout.minimumExercisePhotoHeight, 220)
     }
 
-    func testPhoneLayoutUsesLargestPracticalPortraitPhotoFrame() {
-        XCTAssertEqual(WorkoutPlayerLayout.exercisePhotoHeight, 300)
+    func testPhoneLayoutExpandsPortraitPhotoWhenCardHasSpace() {
+        XCTAssertEqual(WorkoutPlayerLayout.exercisePhotoHeight(forCardHeight: 640), 420)
+        XCTAssertEqual(WorkoutPlayerLayout.exercisePhotoHeight(forCardHeight: 500), 300)
     }
 
     func testPhoneLayoutUsesNormalSpacingBelowExerciseDetails() {

@@ -1,11 +1,16 @@
 import SwiftUI
 
 enum WorkoutPlayerLayout {
-    static let exercisePhotoHeight: CGFloat = 300
+    static let minimumExercisePhotoHeight: CGFloat = 300
+    static let maximumExercisePhotoHeight: CGFloat = 420
     static var contentBottomPadding: CGFloat { 24 }
     static let controlsFollowExerciseDetails = true
     static let controlsAnchorToBottom = true
     static let supportsSwipeNavigation = true
+
+    static func exercisePhotoHeight(forCardHeight height: CGFloat) -> CGFloat {
+        min(maximumExercisePhotoHeight, max(minimumExercisePhotoHeight, height - 220))
+    }
 }
 
 struct WorkoutPlayerView: View {

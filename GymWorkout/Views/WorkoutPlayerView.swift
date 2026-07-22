@@ -5,13 +5,12 @@ enum WorkoutPlayerLayout {
     static var contentBottomPadding: CGFloat { 24 }
     static let controlsFollowExerciseDetails = true
     static let controlsAnchorToBottom = true
+    static let supportsSwipeNavigation = true
 }
 
 struct WorkoutPlayerView: View {
     let store: WorkoutSessionStore
     let onReturnHome: () -> Void
-
-    @State private var isShowingSummary = false
 
     var body: some View {
         ZStack {
@@ -26,15 +25,19 @@ struct WorkoutPlayerView: View {
                         .padding(.horizontal, 18)
                         .padding(.top, 18)
 
-                    VStack(spacing: 10) {
-                        completionButton(for: exercise)
-                        navigationButtons
-                    }
+                    navigationButtons
                     .padding(.horizontal, 18)
                     .padding(.top, 18)
                     .padding(.bottom, WorkoutPlayerLayout.contentBottomPadding)
                 }
                 .ignoresSafeArea(edges: .top)
+                .contentShape(Rectangle())
+                .simultaneousGesture(
+                    DragGesture(minimumDistance: 30)
+                        .onEnded { value in
+                            handleSwipe(value.translation)
+                        }
+                )
             } else {
                 ContentUnavailableView(
                     "No exercises",
@@ -45,25 +48,6 @@ struct WorkoutPlayerView: View {
         }
         .toolbar(.hidden, for: .navigationBar)
         .dynamicTypeSize(...DynamicTypeSize.accessibility3)
-        .onChange(of: store.isFinished, initial: true) { _, isFinished in
-            isShowingSummary = isFinished
-        }
-        .sheet(isPresented: $isShowingSummary) {
-            CompletionSummaryView(
-                completedCount: store.completedCount,
-                totalCount: store.exercises.count,
-                onDone: {
-                    isShowingSummary = false
-                    onReturnHome()
-                },
-                onStartNewWorkout: {
-                    store.startNewWorkout()
-                    isShowingSummary = false
-                }
-            )
-            .interactiveDismissDisabled()
-            .presentationDetents([.large])
-        }
     }
 
     private var playerHeader: some View {
@@ -93,17 +77,17 @@ struct WorkoutPlayerView: View {
 
                 Spacer(minLength: 8)
 
-                Text("\(store.completedCount)/\(store.exercises.count)")
+                Text("\(store.currentPosition + 1)/\(store.exercises.count)")
                     .font(.headline.monospacedDigit())
                     .foregroundStyle(.white)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 8)
                     .background(.white.opacity(0.14), in: Capsule())
-                    .accessibilityLabel("\(store.completedCount) exercises completed")
+                    .accessibilityLabel("Exercise \(store.currentPosition + 1) of \(store.exercises.count)")
             }
 
             ProgressView(
-                value: Double(store.completedCount),
+                value: Double(store.currentPosition + 1),
                 total: Double(store.exercises.count)
             )
             .progressViewStyle(.linear)
@@ -111,46 +95,14 @@ struct WorkoutPlayerView: View {
             .scaleEffect(x: 1, y: 1.4, anchor: .center)
             .accessibilityLabel("Workout progress")
             .accessibilityValue(
-                "\(store.completedCount) of \(store.exercises.count) completed, exercise \(store.currentPosition + 1) of \(store.exercises.count)"
+                "Exercise \(store.currentPosition + 1) of \(store.exercises.count)"
             )
-            .accessibilityHint("Updates when an exercise is marked complete.")
+            .accessibilityHint("Updates as you move through the workout.")
         }
         .padding(.horizontal, 18)
         .padding(.top, 54)
         .padding(.bottom, 18)
         .background(WorkoutTheme.forest)
-    }
-
-    private func completionButton(for exercise: Exercise) -> some View {
-        let isComplete = store.isCompleted(exercise)
-
-        return Button {
-            store.toggleCompletion(for: exercise)
-        } label: {
-            Label(
-                WorkoutPlayerCopy.completeButton(isComplete: isComplete),
-                systemImage: isComplete ? "checkmark.circle.fill" : "circle"
-            )
-            .font(.headline)
-            .frame(maxWidth: .infinity, minHeight: 54)
-        }
-        .buttonStyle(.plain)
-        .foregroundStyle(isComplete ? WorkoutTheme.forest : .white)
-        .padding(.horizontal, 16)
-        .background(
-            isComplete ? WorkoutTheme.mint : WorkoutTheme.green,
-            in: RoundedRectangle(cornerRadius: 15, style: .continuous)
-        )
-        .overlay {
-            RoundedRectangle(cornerRadius: 15, style: .continuous)
-                .stroke(isComplete ? WorkoutTheme.green : .clear, lineWidth: 2)
-        }
-        .accessibilityLabel(WorkoutPlayerCopy.completeButton(isComplete: isComplete))
-        .accessibilityHint(
-            isComplete
-                ? "Marks \(exercise.name) as not complete."
-                : "Marks \(exercise.name) as complete."
-        )
     }
 
     private var navigationButtons: some View {
@@ -194,5 +146,15 @@ struct WorkoutPlayerView: View {
         .disabled(isDisabled)
         .accessibilityLabel("\(title) exercise")
         .accessibilityHint(hint)
+    }
+
+    private func handleSwipe(_ translation: CGSize) {
+        guard abs(translation.width) > abs(translation.height) else { return }
+
+        if translation.width < 0 {
+            store.goNext()
+        } else {
+            store.goPrevious()
+        }
     }
 }

@@ -22,9 +22,8 @@ final class WorkoutPlayerViewTests: XCTestCase {
     func testPhoneLayoutAnchorsControlsAtTheBottom() {
         XCTAssertTrue(WorkoutPlayerLayout.controlsAnchorToBottom)
     }
-    func testCompleteButtonUsesNonColourCompletionCopy() {
-        XCTAssertEqual(WorkoutPlayerCopy.completeButton(isComplete: false), "Mark complete")
-        XCTAssertEqual(WorkoutPlayerCopy.completeButton(isComplete: true), "Completed")
+    func testPlayerSupportsSwipeNavigation() {
+        XCTAssertTrue(WorkoutPlayerLayout.supportsSwipeNavigation)
     }
 
     func testProgressCopyIncludesCurrentPositionAndTotal() {

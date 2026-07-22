@@ -30,10 +30,6 @@ struct WorkoutPlayerView: View {
                         .padding(.horizontal, 18)
                         .padding(.top, 18)
 
-                    navigationButtons
-                    .padding(.horizontal, 18)
-                    .padding(.top, 18)
-                    .padding(.bottom, WorkoutPlayerLayout.contentBottomPadding)
                 }
                 .ignoresSafeArea(edges: .top)
                 .contentShape(Rectangle())
@@ -108,49 +104,6 @@ struct WorkoutPlayerView: View {
         .padding(.top, 54)
         .padding(.bottom, 18)
         .background(WorkoutTheme.forest)
-    }
-
-    private var navigationButtons: some View {
-        HStack(spacing: 12) {
-            navigationButton(
-                title: "Previous",
-                systemImage: "chevron.left",
-                isDisabled: store.currentPosition == 0,
-                hint: store.currentPosition == 0
-                    ? "This is the first exercise."
-                    : "Shows exercise \(store.currentPosition).",
-                action: store.goPrevious
-            )
-
-            navigationButton(
-                title: "Next",
-                systemImage: "chevron.right",
-                isDisabled: store.currentPosition == store.exercises.count - 1,
-                hint: store.currentPosition == store.exercises.count - 1
-                    ? "This is the last exercise."
-                    : "Shows exercise \(store.currentPosition + 2).",
-                action: store.goNext
-            )
-        }
-    }
-
-    private func navigationButton(
-        title: String,
-        systemImage: String,
-        isDisabled: Bool,
-        hint: String,
-        action: @escaping () -> Void
-    ) -> some View {
-        Button(action: action) {
-            Label(title, systemImage: systemImage)
-                .font(.headline)
-                .frame(maxWidth: .infinity, minHeight: 50)
-        }
-        .buttonStyle(.bordered)
-        .tint(WorkoutTheme.green)
-        .disabled(isDisabled)
-        .accessibilityLabel("\(title) exercise")
-        .accessibilityHint(hint)
     }
 
     private func handleSwipe(_ translation: CGSize) {

@@ -1,5 +1,9 @@
 import SwiftUI
 
+enum WorkoutPlayerLayout {
+    static let exercisePhotoHeight: CGFloat = 180
+}
+
 struct WorkoutPlayerView: View {
     let store: WorkoutSessionStore
     let onReturnHome: () -> Void
@@ -17,16 +21,24 @@ struct WorkoutPlayerView: View {
 
                         VStack(spacing: 18) {
                             ExerciseDetailCard(exercise: exercise)
-                            completionButton(for: exercise)
-                            navigationButtons
                         }
                         .padding(.horizontal, 18)
                         .padding(.top, 18)
-                        .padding(.bottom, 32)
+                        .padding(.bottom, 150)
                     }
                 }
                 .scrollIndicators(.hidden)
                 .ignoresSafeArea(edges: .top)
+                .safeAreaInset(edge: .bottom, spacing: 0) {
+                    VStack(spacing: 10) {
+                        completionButton(for: exercise)
+                        navigationButtons
+                    }
+                    .padding(.horizontal, 18)
+                    .padding(.top, 12)
+                    .padding(.bottom, 10)
+                    .background(.ultraThinMaterial)
+                }
             } else {
                 ContentUnavailableView(
                     "No exercises",

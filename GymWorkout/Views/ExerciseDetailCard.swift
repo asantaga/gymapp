@@ -62,7 +62,7 @@ struct ExerciseDetailCard: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .aspectRatio(3 / 2, contentMode: .fit)
+        .frame(height: WorkoutPlayerLayout.exercisePhotoHeight)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .accessibilityElement(children: .ignore)

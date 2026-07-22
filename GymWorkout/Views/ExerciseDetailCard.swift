@@ -38,6 +38,8 @@ struct ExerciseDetailCard: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+
+            Spacer(minLength: 0)
         }
         .padding(16)
         .background(.white, in: RoundedRectangle(cornerRadius: 22, style: .continuous))

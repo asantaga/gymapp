@@ -4,6 +4,7 @@ enum WorkoutPlayerLayout {
     static let exercisePhotoHeight: CGFloat = 180
     static var contentBottomPadding: CGFloat { 24 }
     static let controlsFollowExerciseDetails = true
+    static let controlsAnchorToBottom = true
 }
 
 struct WorkoutPlayerView: View {
@@ -17,21 +18,22 @@ struct WorkoutPlayerView: View {
             WorkoutTheme.canvas.ignoresSafeArea()
 
             if let exercise = store.currentExercise {
-                ScrollView {
-                    VStack(spacing: 0) {
-                        playerHeader
+                VStack(spacing: 0) {
+                    playerHeader
 
-                        VStack(spacing: 18) {
-                            ExerciseDetailCard(exercise: exercise)
-                            completionButton(for: exercise)
-                            navigationButtons
-                        }
+                    ExerciseDetailCard(exercise: exercise)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding(.horizontal, 18)
                         .padding(.top, 18)
-                        .padding(.bottom, WorkoutPlayerLayout.contentBottomPadding)
+
+                    VStack(spacing: 10) {
+                        completionButton(for: exercise)
+                        navigationButtons
                     }
+                    .padding(.horizontal, 18)
+                    .padding(.top, 18)
+                    .padding(.bottom, WorkoutPlayerLayout.contentBottomPadding)
                 }
-                .scrollIndicators(.hidden)
                 .ignoresSafeArea(edges: .top)
             } else {
                 ContentUnavailableView(

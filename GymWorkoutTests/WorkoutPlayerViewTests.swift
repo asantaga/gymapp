@@ -14,6 +14,10 @@ final class WorkoutPlayerViewTests: XCTestCase {
     func testPhoneLayoutPlacesControlsDirectlyAfterExerciseDetails() {
         XCTAssertTrue(WorkoutPlayerLayout.controlsFollowExerciseDetails)
     }
+
+    func testPhoneLayoutAnchorsControlsAtTheBottom() {
+        XCTAssertTrue(WorkoutPlayerLayout.controlsAnchorToBottom)
+    }
     func testCompleteButtonUsesNonColourCompletionCopy() {
         XCTAssertEqual(WorkoutPlayerCopy.completeButton(isComplete: false), "Mark complete")
         XCTAssertEqual(WorkoutPlayerCopy.completeButton(isComplete: true), "Completed")

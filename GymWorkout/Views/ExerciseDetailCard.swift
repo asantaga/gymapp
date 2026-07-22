@@ -55,7 +55,7 @@ struct ExerciseDetailCard: View {
                let image = UIImage(named: photoName) {
                 Image(uiImage: image)
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
             } else {
                 ZStack {
                     WorkoutTheme.mint
@@ -68,6 +68,7 @@ struct ExerciseDetailCard: View {
         .background(WorkoutTheme.mint)
         .frame(maxWidth: .infinity)
         .frame(height: WorkoutPlayerLayout.exercisePhotoHeight)
+        .clipped()
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .accessibilityElement(children: .ignore)

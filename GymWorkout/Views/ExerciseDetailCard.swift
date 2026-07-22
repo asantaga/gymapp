@@ -27,6 +27,8 @@ struct ExerciseDetailCard: View {
                 }
             }
 
+            Spacer(minLength: 12)
+
             VStack(alignment: .leading, spacing: 7) {
                 Text("Notes")
                     .font(.headline)
@@ -38,8 +40,6 @@ struct ExerciseDetailCard: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-
-            Spacer(minLength: 0)
         }
         .padding(16)
         .background(.white, in: RoundedRectangle(cornerRadius: 22, style: .continuous))

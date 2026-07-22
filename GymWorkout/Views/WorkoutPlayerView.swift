@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum WorkoutPlayerLayout {
-    static let exercisePhotoHeight: CGFloat = 180
+    static let exercisePhotoHeight: CGFloat = 240
     static var contentBottomPadding: CGFloat { 24 }
     static let controlsFollowExerciseDetails = true
     static let controlsAnchorToBottom = true

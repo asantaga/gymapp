@@ -3,8 +3,8 @@ import XCTest
 
 final class WorkoutPlayerViewTests: XCTestCase {
 
-    func testPhoneLayoutUsesACompactExercisePhoto() {
-        XCTAssertLessThanOrEqual(WorkoutPlayerLayout.exercisePhotoHeight, 190)
+    func testPhoneLayoutPrioritizesTheExercisePhoto() {
+        XCTAssertGreaterThanOrEqual(WorkoutPlayerLayout.exercisePhotoHeight, 220)
     }
 
     func testPhoneLayoutUsesNormalSpacingBelowExerciseDetails() {

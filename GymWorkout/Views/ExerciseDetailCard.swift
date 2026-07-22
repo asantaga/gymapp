@@ -6,12 +6,16 @@ struct ExerciseDetailCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
+            Spacer(minLength: 12)
+
             exercisePhoto
 
             Text(exercise.name)
                 .font(.title.bold())
                 .foregroundStyle(WorkoutTheme.forest)
                 .fixedSize(horizontal: false, vertical: true)
+
+            Spacer(minLength: 16)
 
             ViewThatFits(in: .horizontal) {
                 HStack(spacing: 10) {
@@ -26,8 +30,6 @@ struct ExerciseDetailCard: View {
                     valueTile(label: "kg", value: exercise.weightText)
                 }
             }
-
-            Spacer(minLength: 12)
 
             VStack(alignment: .leading, spacing: 7) {
                 Text("Notes")

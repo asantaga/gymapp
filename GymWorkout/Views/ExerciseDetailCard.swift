@@ -10,12 +10,12 @@ struct ExerciseDetailCard: View {
 
             exercisePhoto
 
+            Spacer(minLength: 16)
+
             Text(exercise.name)
                 .font(.title.bold())
                 .foregroundStyle(WorkoutTheme.forest)
                 .fixedSize(horizontal: false, vertical: true)
-
-            Spacer(minLength: 16)
 
             ViewThatFits(in: .horizontal) {
                 HStack(spacing: 10) {

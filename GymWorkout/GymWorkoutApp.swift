@@ -26,7 +26,7 @@ private struct SeededRootView: View {
     @Query private var exercises: [Exercise]
 
     var body: some View {
-        Text("Gym Workout")
+        HomeView()
             .task {
                 guard exercises.isEmpty else {
                     return

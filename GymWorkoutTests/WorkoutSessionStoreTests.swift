@@ -88,6 +88,14 @@ final class WorkoutSessionStoreTests: XCTestCase {
         XCTAssertTrue(session.isFinished)
     }
 
+    func testStoreReflectsFinishedSessionState() {
+        XCTAssertFalse(store.isFinished)
+
+        exercises.forEach(store.toggleCompletion)
+
+        XCTAssertTrue(store.isFinished)
+    }
+
     func testUncompletingAnExerciseClearsFinishedStateAndPersists() throws {
         exercises.forEach(store.toggleCompletion)
         store.finishIfComplete()

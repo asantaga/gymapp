@@ -33,6 +33,10 @@ final class WorkoutSessionStore {
         exercises.count(where: isCompleted)
     }
 
+    var isFinished: Bool {
+        session.isFinished
+    }
+
     func isCompleted(_ exercise: Exercise) -> Bool {
         session.completedExerciseIDs.contains(exercise.id)
     }

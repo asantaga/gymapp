@@ -88,6 +88,20 @@ final class WorkoutSessionStoreTests: XCTestCase {
         XCTAssertTrue(session.isFinished)
     }
 
+    func testUncompletingAnExerciseClearsFinishedStateAndPersists() throws {
+        exercises.forEach(store.toggleCompletion)
+        store.finishIfComplete()
+        XCTAssertTrue(session.isFinished)
+
+        store.toggleCompletion(for: exercises[0])
+
+        XCTAssertFalse(session.isFinished)
+
+        let persistenceContext = ModelContext(container)
+        let persistedSession = try XCTUnwrap(persistenceContext.fetch(FetchDescriptor<WorkoutSession>()).first)
+        XCTAssertFalse(persistedSession.isFinished)
+    }
+
     func testMutationsPersistToTheModelContainer() throws {
         store.toggleCompletion(for: exercises[0])
         store.goNext()

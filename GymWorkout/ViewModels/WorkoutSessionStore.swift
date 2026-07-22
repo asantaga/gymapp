@@ -43,6 +43,7 @@ final class WorkoutSessionStore {
         } else {
             session.completedExerciseIDs.append(exercise.id)
         }
+        session.isFinished = !exercises.isEmpty && completedCount == exercises.count
         save()
     }
 

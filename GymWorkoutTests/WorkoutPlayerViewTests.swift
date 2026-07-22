@@ -7,6 +7,10 @@ final class WorkoutPlayerViewTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(WorkoutPlayerLayout.exercisePhotoHeight, 220)
     }
 
+    func testPhoneLayoutUsesTwentyPercentLargerPhotoFrame() {
+        XCTAssertEqual(WorkoutPlayerLayout.exercisePhotoHeight, 288)
+    }
+
     func testPhoneLayoutUsesNormalSpacingBelowExerciseDetails() {
         XCTAssertLessThanOrEqual(WorkoutPlayerLayout.contentBottomPadding, 32)
     }

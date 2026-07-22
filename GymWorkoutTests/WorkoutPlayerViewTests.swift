@@ -10,6 +10,10 @@ final class WorkoutPlayerViewTests: XCTestCase {
     func testPhoneLayoutUsesNormalSpacingBelowExerciseDetails() {
         XCTAssertLessThanOrEqual(WorkoutPlayerLayout.contentBottomPadding, 32)
     }
+
+    func testPhoneLayoutPlacesControlsDirectlyAfterExerciseDetails() {
+        XCTAssertTrue(WorkoutPlayerLayout.controlsFollowExerciseDetails)
+    }
     func testCompleteButtonUsesNonColourCompletionCopy() {
         XCTAssertEqual(WorkoutPlayerCopy.completeButton(isComplete: false), "Mark complete")
         XCTAssertEqual(WorkoutPlayerCopy.completeButton(isComplete: true), "Completed")

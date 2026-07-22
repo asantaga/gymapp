@@ -3,6 +3,7 @@ import SwiftUI
 enum WorkoutPlayerLayout {
     static let exercisePhotoHeight: CGFloat = 180
     static var contentBottomPadding: CGFloat { 24 }
+    static let controlsFollowExerciseDetails = true
 }
 
 struct WorkoutPlayerView: View {
@@ -22,6 +23,8 @@ struct WorkoutPlayerView: View {
 
                         VStack(spacing: 18) {
                             ExerciseDetailCard(exercise: exercise)
+                            completionButton(for: exercise)
+                            navigationButtons
                         }
                         .padding(.horizontal, 18)
                         .padding(.top, 18)
@@ -30,16 +33,6 @@ struct WorkoutPlayerView: View {
                 }
                 .scrollIndicators(.hidden)
                 .ignoresSafeArea(edges: .top)
-                .safeAreaInset(edge: .bottom, spacing: 0) {
-                    VStack(spacing: 10) {
-                        completionButton(for: exercise)
-                        navigationButtons
-                    }
-                    .padding(.horizontal, 18)
-                    .padding(.top, 12)
-                    .padding(.bottom, 10)
-                    .background(.ultraThinMaterial)
-                }
             } else {
                 ContentUnavailableView(
                     "No exercises",

@@ -28,7 +28,7 @@ struct WorkoutPlayerView: View {
                     ExerciseDetailCard(exercise: exercise)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding(.horizontal, 18)
-                        .padding(.top, 18)
+                        .padding(.top, 6)
 
                 }
                 .ignoresSafeArea(edges: .top)

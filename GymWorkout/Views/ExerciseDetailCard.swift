@@ -6,16 +6,12 @@ struct ExerciseDetailCard: View {
 
     var body: some View {
         GeometryReader { geometry in
-            VStack(alignment: .leading, spacing: 20) {
-                Spacer(minLength: 28)
-
+            VStack(alignment: .leading, spacing: 12) {
                 exercisePhoto(
                     height: WorkoutPlayerLayout.exercisePhotoHeight(
                         forCardHeight: geometry.size.height
                     )
                 )
-
-                Spacer(minLength: 16)
 
                 Text(exercise.name)
                     .font(.title.bold())

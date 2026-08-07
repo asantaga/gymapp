@@ -22,6 +22,11 @@
 		B20000000000000000000013 /* WorkoutPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000003 /* WorkoutPlayerView.swift */; };
 		B20000000000000000000014 /* ExerciseDetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000004 /* ExerciseDetailCard.swift */; };
 		B20000000000000000000015 /* CompletionSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000005 /* CompletionSummaryView.swift */; };
+		C10000000000000000000002 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000001 /* Workout.swift */; };
+		C10000000000000000000004 /* ExercisePhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000003 /* ExercisePhotoStore.swift */; };
+		C10000000000000000000006 /* WorkoutEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000005 /* WorkoutEditView.swift */; };
+		C10000000000000000000008 /* ExerciseEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000007 /* ExerciseEditView.swift */; };
+		C10000000000000000000010 /* ManageExercisesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10000000000000000000009 /* ManageExercisesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +57,11 @@
 		B20000000000000000000003 /* WorkoutPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPlayerView.swift; sourceTree = "<group>"; };
 		B20000000000000000000004 /* ExerciseDetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailCard.swift; sourceTree = "<group>"; };
 		B20000000000000000000005 /* CompletionSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionSummaryView.swift; sourceTree = "<group>"; };
+		C10000000000000000000001 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		C10000000000000000000003 /* ExercisePhotoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePhotoStore.swift; sourceTree = "<group>"; };
+		C10000000000000000000005 /* WorkoutEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutEditView.swift; sourceTree = "<group>"; };
+		C10000000000000000000007 /* ExerciseEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseEditView.swift; sourceTree = "<group>"; };
+		C10000000000000000000009 /* ManageExercisesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageExercisesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +129,7 @@
 			children = (
 				A10000000000000000000005 /* Exercise.swift */,
 				A10000000000000000000006 /* WorkoutSession.swift */,
+				C10000000000000000000001 /* Workout.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -127,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				A10000000000000000000007 /* SeedWorkoutFactory.swift */,
+				C10000000000000000000003 /* ExercisePhotoStore.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -147,6 +159,9 @@
 				B20000000000000000000004 /* ExerciseDetailCard.swift */,
 				B20000000000000000000005 /* CompletionSummaryView.swift */,
 				B20000000000000000000001 /* WorkoutPlayerCopy.swift */,
+				C10000000000000000000005 /* WorkoutEditView.swift */,
+				C10000000000000000000007 /* ExerciseEditView.swift */,
+				C10000000000000000000009 /* ManageExercisesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,6 +275,11 @@
 				B20000000000000000000013 /* WorkoutPlayerView.swift in Sources */,
 				B20000000000000000000014 /* ExerciseDetailCard.swift in Sources */,
 				B20000000000000000000015 /* CompletionSummaryView.swift in Sources */,
+				C10000000000000000000002 /* Workout.swift in Sources */,
+				C10000000000000000000004 /* ExercisePhotoStore.swift in Sources */,
+				C10000000000000000000006 /* WorkoutEditView.swift in Sources */,
+				C10000000000000000000008 /* ExerciseEditView.swift in Sources */,
+				C10000000000000000000010 /* ManageExercisesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

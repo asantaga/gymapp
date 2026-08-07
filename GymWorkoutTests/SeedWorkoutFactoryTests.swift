@@ -8,7 +8,7 @@ final class SeedWorkoutFactoryTests: XCTestCase {
 
     override func setUpWithError() throws {
         let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
-        container = try ModelContainer(for: Exercise.self, configurations: configuration)
+        container = try ModelContainer(for: Workout.self, Exercise.self, configurations: configuration)
         context = ModelContext(container)
     }
 

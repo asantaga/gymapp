@@ -12,6 +12,7 @@ final class Exercise {
     var notes: String
     var bundledPhotoName: String?
     var userPhotoFilename: String?
+    var workout: Workout?
 
     init(
         position: Int,

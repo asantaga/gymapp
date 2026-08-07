@@ -53,7 +53,12 @@ struct ExerciseDetailCard: View {
     @ViewBuilder
     private func exercisePhoto(height: CGFloat) -> some View {
         Group {
-            if let photoName = exercise.bundledPhotoName,
+            if let userPhotoFilename = exercise.userPhotoFilename,
+               let image = ExercisePhotoStore.loadImage(filename: userPhotoFilename) {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+            } else if let photoName = exercise.bundledPhotoName,
                let image = UIImage(named: photoName) {
                 Image(uiImage: image)
                     .resizable()

@@ -12,6 +12,18 @@ final class ExerciseModelTests: XCTestCase {
         XCTAssertEqual(exercise.weightText, "52")
         XCTAssertEqual(exercise.bundledPhotoName, "cable-row")
         XCTAssertNil(exercise.userPhotoFilename)
+        XCTAssertNil(exercise.workout)
+    }
+
+    func testExerciseCanBeAssignedToAWorkout() throws {
+        let workout = Workout(name: "Leg Day", position: 0)
+        let exercise = Exercise(
+            position: 1, name: "Leg Press", setsText: "3", repsText: "10",
+            weightText: "80", notes: ""
+        )
+        exercise.workout = workout
+
+        XCTAssertEqual(exercise.workout?.name, "Leg Day")
     }
 
     func testWorkoutSessionStoresProgress() throws {

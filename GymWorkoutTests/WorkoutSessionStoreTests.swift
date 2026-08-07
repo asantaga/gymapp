@@ -6,32 +6,36 @@ import XCTest
 final class WorkoutSessionStoreTests: XCTestCase {
     private var container: ModelContainer!
     private var context: ModelContext!
+    private var workout: Workout!
     private var exercises: [Exercise]!
     private var session: WorkoutSession!
     private var store: WorkoutSessionStore!
 
     override func setUpWithError() throws {
         let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
-        container = try ModelContainer(for: Exercise.self, WorkoutSession.self, configurations: configuration)
+        container = try ModelContainer(for: Workout.self, Exercise.self, WorkoutSession.self, configurations: configuration)
         context = ModelContext(container)
+        workout = Workout(name: "Workout A", position: 0)
         exercises = [
             Exercise(position: 1, name: "Warm-up", setsText: "1", repsText: "10", weightText: "", notes: ""),
             Exercise(position: 2, name: "Squat", setsText: "3", repsText: "8", weightText: "60", notes: ""),
             Exercise(position: 3, name: "Row", setsText: "3", repsText: "8", weightText: "50", notes: "")
         ]
-        session = WorkoutSession()
+        exercises.forEach { $0.workout = workout }
 
+        context.insert(workout)
         exercises.forEach(context.insert)
-        context.insert(session)
         try context.save()
 
-        store = WorkoutSessionStore(exercises: exercises, session: session, modelContext: context)
+        store = WorkoutSessionStore(workout: workout, modelContext: context)
+        session = workout.sessions.first
     }
 
     override func tearDownWithError() throws {
         store = nil
         session = nil
         exercises = nil
+        workout = nil
         context = nil
         container = nil
     }

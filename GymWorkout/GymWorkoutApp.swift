@@ -7,7 +7,7 @@ struct GymWorkoutApp: App {
 
     init() {
         do {
-            modelContainer = try ModelContainer(for: Exercise.self, WorkoutSession.self)
+            modelContainer = try ModelContainer(for: Workout.self, Exercise.self, WorkoutSession.self)
         } catch {
             fatalError("Unable to create the model container: \(error)")
         }
@@ -23,12 +23,12 @@ struct GymWorkoutApp: App {
 
 private struct SeededRootView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var exercises: [Exercise]
+    @Query private var workouts: [Workout]
 
     var body: some View {
         HomeView()
             .task {
-                guard exercises.isEmpty else {
+                guard workouts.isEmpty else {
                     return
                 }
 

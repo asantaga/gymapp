@@ -8,10 +8,22 @@ final class WorkoutSessionStore {
     private let session: WorkoutSession
     private let modelContext: ModelContext
 
-    init(exercises: [Exercise], session: WorkoutSession, modelContext: ModelContext) {
-        self.exercises = exercises
-        self.session = session
+    init(workout: Workout, modelContext: ModelContext) {
+        self.exercises = workout.exercises.sorted { $0.position < $1.position }
         self.modelContext = modelContext
+
+        if let existingSession = workout.sessions.first {
+            self.session = existingSession
+        } else {
+            let newSession = WorkoutSession(workout: workout)
+            modelContext.insert(newSession)
+            self.session = newSession
+            do {
+                try modelContext.save()
+            } catch {
+                assertionFailure("Unable to create the workout session: \(error)")
+            }
+        }
     }
 
     var currentExercise: Exercise? {

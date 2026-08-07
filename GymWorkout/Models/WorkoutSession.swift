@@ -7,15 +7,18 @@ final class WorkoutSession {
     var currentExerciseID: UUID?
     var completedExerciseIDs: [UUID]
     var isFinished: Bool
+    var workout: Workout?
 
     init(
         currentExerciseID: UUID? = nil,
         completedExerciseIDs: [UUID] = [],
-        isFinished: Bool = false
+        isFinished: Bool = false,
+        workout: Workout? = nil
     ) {
         self.id = UUID()
         self.currentExerciseID = currentExerciseID
         self.completedExerciseIDs = completedExerciseIDs
         self.isFinished = isFinished
+        self.workout = workout
     }
 }

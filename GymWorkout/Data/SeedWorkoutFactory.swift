@@ -2,22 +2,25 @@ import SwiftData
 
 enum SeedWorkoutFactory {
     static func seedIfNeeded(in context: ModelContext) throws {
-        guard try context.fetchCount(FetchDescriptor<Exercise>()) == 0 else {
+        guard try context.fetchCount(FetchDescriptor<Workout>()) == 0 else {
             return
         }
 
+        let workout = Workout(name: "Workout A", position: 0)
+        context.insert(workout)
+
         for exercise in workoutA {
-            context.insert(
-                Exercise(
-                    position: exercise.position,
-                    name: exercise.name,
-                    setsText: exercise.setsText,
-                    repsText: exercise.repsText,
-                    weightText: exercise.weightText,
-                    notes: exercise.notes,
-                    bundledPhotoName: exercise.bundledPhotoName
-                )
+            let inserted = Exercise(
+                position: exercise.position,
+                name: exercise.name,
+                setsText: exercise.setsText,
+                repsText: exercise.repsText,
+                weightText: exercise.weightText,
+                notes: exercise.notes,
+                bundledPhotoName: exercise.bundledPhotoName
             )
+            inserted.workout = workout
+            context.insert(inserted)
         }
 
         try context.save()

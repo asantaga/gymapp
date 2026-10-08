@@ -25,17 +25,24 @@ jobs:
           node-version: 22
       - run: node --test web/tests/store.test.mjs
 
-  deploy:
+  # Upload and deploy run in separate jobs: deploying in the same job right after the
+  # upload can race GitHub's artifact listing ("No artifacts named github-pages").
+  build:
     needs: test
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
